@@ -16,7 +16,9 @@ const passport = require("./config/passport");
 
 require('dotenv').config();
 
-const { Server } = require("socket.io");
+const {
+  Server
+} = require("socket.io");
 const io = new Server(server);
 global._io = io;
 
@@ -34,17 +36,23 @@ app.set('views', `${__dirname}/views`);
 app.set('view engine', 'pug');
 
 app.use(cookieParser('H123456789'));
-app.use(session({ cookie: { maxAge: 60000 }}));
+app.use(session({
+  cookie: {
+    maxAge: 60000
+  }
+}));
 app.use(flash());
 
 app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 app.use(express.static(`${__dirname}/public`));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(express.json());
 
 app.use(passport.initialize());
-
+//app.use(express.static(path.join(__dirname, "public")));
 route(app);
 routeAdmin(app);
 
