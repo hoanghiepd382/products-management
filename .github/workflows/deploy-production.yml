@@ -53,6 +53,7 @@ jobs:
                   password: ${{ secrets.PASSWORD_PRODUCTION }}
                   port: ${{ secrets.PORT_PRODUCTION }}
                   script: |
+                      cd ~/gymlord
                       docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
                       docker pull hiepsadoi/gymlord:v0
                       docker compose -f docker-compose.prod.yml up -d
